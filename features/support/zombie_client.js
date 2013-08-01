@@ -40,4 +40,8 @@ ZombieClient.prototype.getText = function (selector) {
     return browser.text(selector);
 };
 
+ZombieClient.prototype.clearCookies = function () {
+    browser.cookies.deleteAll();
+};
+
 module.exports.ZombieClient = ZombieClient;
