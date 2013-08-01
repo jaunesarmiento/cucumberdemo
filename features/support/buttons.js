@@ -1,5 +1,6 @@
 var BUTTONS = {
-    "Sign In" : "commit"
+    "Sign In" : "commit",
+    "Save" : "_save"
 };
 
 module.exports.BUTTONS = BUTTONS;

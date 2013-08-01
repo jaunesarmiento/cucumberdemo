@@ -1,7 +1,8 @@
 var PAGES = {
-    "Sign In" : "/users/sign_in",
+    "Home" : "/",
     "Admin" : "/admin",
-    "Home" : "/"
+    "Sign In" : "/users/sign_in",
+    "New Scholar" : "/admin/scholar/new"
 };
 
 module.exports.PAGES = PAGES;

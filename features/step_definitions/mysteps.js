@@ -35,4 +35,39 @@ module.exports = function () {
         assert.equal (this.getCurrentURL(), this.getBaseURL() + PAGES[page]);
         callback();
     });
+
+    this.When(/^I fill up the new scholar form:$/, function(table, callback) {
+        var self = this;
+        var loginCredentials = table.hashes()[0];
+
+        async.waterfall([
+            function (callback) {
+                self.type("#scholar_first_name", loginCredentials.FirstName, callback);
+            },
+            function(callback) {
+                self.type("#scholar_last_name", loginCredentials.LastName, callback);
+            },
+            function (callback) {
+                self.type("#scholar_amount", loginCredentials.Amount, callback);
+            },
+            function(callback) {
+                self.type("#scholar_school", loginCredentials.School, callback);
+            },
+            function(callback) {
+                self.type("#scholar_age", loginCredentials.Age, callback);
+            },
+            function(callback) {
+                self.type("#scholar_description", loginCredentials.Description, callback);
+            }
+        ], function (err) {
+            callback();
+        });
+    });
+
+    this.Then(/^I should see a message:$/, function(string, callback) {
+        var alertMsg = this.getText('.alert');
+        string = string.replace(/\s+/g, ' ');
+        assert(alertMsg.indexOf(string) > -1);
+        callback();
+    });
 };

@@ -1,5 +1,3 @@
-@wip
-
 Feature: Administrator Authentication
   In order to perfom administrative tasks
   As an administrator

@@ -7,7 +7,9 @@
     "cucumber": "latest",
     "zombie":"latest",
     "assert":"latest",
-    "async" : "*"
+    "async" : "*",
+    "request" : "*",
+    "form-data" : "*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

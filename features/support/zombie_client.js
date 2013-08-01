@@ -2,7 +2,7 @@ var Zombie = require('zombie');
 var browser = new Zombie ({ debug: true, runScripts: true });
 
 var ZombieClient = function (config) {
-    var baseURL = config.baseURL;
+    var baseURL = config.uri;
     var user = config.user;
     var password = config.password;
 
@@ -32,8 +32,12 @@ ZombieClient.prototype.click = function (selector, callback) {
     browser.pressButton(selector, callback);
 };
 
-ZombieClient.prototype.getCurrentURL = function (callback) {
+ZombieClient.prototype.getCurrentURL = function () {
     return browser.location.href;
+};
+
+ZombieClient.prototype.getText = function (selector) {
+    return browser.text(selector);
 };
 
 module.exports.ZombieClient = ZombieClient;
