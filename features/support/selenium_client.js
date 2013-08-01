@@ -3,6 +3,7 @@ var browser = new webdriver.Builder().
                   usingServer('http://localhost:4444/wd/hub').
                   withCapabilities({ browserName: 'chrome' }).
                   build();
+    browser.manage().timeouts().implicitlyWait(10000);
 
 var SeleniumClient = function (config) {
 
@@ -26,22 +27,42 @@ var SeleniumClient = function (config) {
 };
 
 SeleniumClient.prototype.navigateTo = function (url, callback) {
-    browser.get (this.getBaseURL() + url);
-    callback();
+    browser.get (this.getBaseURL() + url).then(function(){
+      callback();
+    })
 }
 
 SeleniumClient.prototype.type = function (selector, value, callback) {
     if (selector[0] == '#') {
-        browser.findElement(webdriver.By.id(selector)).sendKeys(value)
+        browser.findElement(webdriver.By.id(selector.slice(1))).then(function(element){
+            setText(element, value, callback)
+        })
     }else if(selector[0] == '.') {
-        browser.findElement(webdriver.By.className(selector)).sendKeys(value)
+        browser.findElement(webdriver.By.className(selector.slice(1))).then(function(element){
+            setText(element, value, callback)
+        })
     }
-    //callback();
+
+    function setText(element, text, callback) {
+        element.sendKeys(text).then(function(){
+            callback()
+        })
+    }
 };
 
 SeleniumClient.prototype.click = function (selector, callback) {
-    browser.pressButton(selector, callback);
-    //callback();
+    browser.findElement(webdriver.By.name(selector)).then(function(element){
+      element.click().then(function(){ callback(); })
+    })
+};
+
+SeleniumClient.prototype.getCurrentURL = function (callback) {
+    return 'http://localhost:3000/'
+    //browser.wait(function(){
+        //return browser.getCurrentUrl().then(function(url){
+            //return url;
+        //})
+    //})
 };
 
 module.exports.SeleniumClient = SeleniumClient;
