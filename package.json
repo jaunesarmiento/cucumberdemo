@@ -8,8 +8,7 @@
     "zombie":"latest",
     "assert":"latest",
     "async" : "*",
-    "request" : "*",
-    "form-data" : "*"
+    "selenium-webdriver": "*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
