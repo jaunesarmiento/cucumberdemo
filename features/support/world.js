@@ -4,7 +4,7 @@ var Client = require('./zombie_client').ZombieClient;
 
 var World = function (callback) {
 
-    var config = { baseURL : "http://localhost:3000/",
+    var config = { baseURL : "http://localhost:3000",
                    user : "adrian@proudcloud.net",
                    password: "p@ssw0rd"
                  };

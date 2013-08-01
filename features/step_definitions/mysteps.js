@@ -32,11 +32,7 @@ module.exports = function () {
     });
 
     this.Then(/^I should be on the "([^"]*)" page$/, function(page, callback) {
-        var self = this;
-        this.getCurrentURL(function (url) {
-            assert.equal (url, self.getBaseURL() + PAGES[page]);
-            callback();
-        });
+        assert.equal (this.getCurrentURL(), this.getBaseURL() + PAGES[page]);
+        callback();
     });
-
 };
