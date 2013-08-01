@@ -12,4 +12,4 @@ Feature: Administrator Authentication
       | email                | password |
       | adrian@proudcloud.net| p@ssw0rd |
     And I press the "Sign In" button
-    Then I should be on the "Admin" page
+    Then I should be on the "Home" page

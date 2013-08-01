@@ -33,19 +33,7 @@ ZombieClient.prototype.click = function (selector, callback) {
 };
 
 ZombieClient.prototype.getCurrentURL = function (callback) {
-    this.waitForAppearance("title", function () {
-        callback(browser.location.href);
-    });
-};
-
-ZombieClient.prototype.waitForAppearance = function (selector, callback) {
-    var elementPresent = function (selector) {
-        console.log('querying');
-        console.log(browser.query(selector));
-        return browser.query(selector);
-    };
-
-    browser.wait (elementPresent, callback);
+    return browser.location.href;
 };
 
 module.exports.ZombieClient = ZombieClient;
