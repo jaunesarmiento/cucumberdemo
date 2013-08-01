@@ -1,0 +1,22 @@
+{
+  "name": "manilajs",
+  "version": "0.0.0",
+  "description": "This is a demo on cucumberjs",
+  "main": "index.js",
+  "devDependencies" : {
+    "cucumber": "latest",
+    "zombie":"latest",
+    "assert":"latest",
+    "async" : "*"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "Cucumber",
+    "Test"
+  ],
+  "author": "Weto Olaguer",
+  "license": "BSD"
+}
