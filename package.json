@@ -7,7 +7,8 @@
     "cucumber": "latest",
     "zombie":"latest",
     "assert":"latest",
-    "async" : "*"
+    "async" : "*",
+    "selenium-webdriver": "*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
