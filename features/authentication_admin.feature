@@ -7,6 +7,7 @@ Feature: Administrator Authentication
 
   Scenario: Logging in as an admin
     Given I am on the "Sign In" page
+    Then I should be on the "Sign In" page
     When I type my login credentials:
       | email                | password |
       | adrian@proudcloud.net| p@ssw0rd |

@@ -10,18 +10,6 @@ var SeleniumClient = function (config) {
     var user = config.user;
     var password = config.password;
 
-    //var find = function(selector, callback) {
-        //if (selector[0] == "#") { //if selector is id
-            //selector = webdriver.By.id(selector)
-        //} else if (selector[0] == "." ){ //if selector is class
-            //selector = webdriver.By.className(selector)
-        //}
-
-        //webdriver.findElement(selector).then(function (element){
-            //callback(null, element);
-        //})
-    //};
-
     this.getBaseURL = function () {
         return baseURL;
     };
@@ -34,29 +22,26 @@ var SeleniumClient = function (config) {
         return password;
     };
 
-    //this.fill = function(selector, value, callback) {
-        //find(selector).then(function(element){
-            //element.sendKeys(value).then(function(result){
-                //callback(null, result)
-            //})
-        //})
-    //};
-
 
 };
 
 SeleniumClient.prototype.navigateTo = function (url, callback) {
     browser.get (this.getBaseURL() + url);
     callback();
-};
+}
 
 SeleniumClient.prototype.type = function (selector, value, callback) {
-    browser.fill(selector, value);
-    callback();
+    if (selector[0] == '#') {
+        browser.findElement(webdriver.By.id(selector)).sendKeys(value)
+    }else if(selector[0] == '.') {
+        browser.findElement(webdriver.By.className(selector)).sendKeys(value)
+    }
+    //callback();
 };
 
 SeleniumClient.prototype.click = function (selector, callback) {
     browser.pressButton(selector, callback);
+    //callback();
 };
 
 module.exports.SeleniumClient = SeleniumClient;
