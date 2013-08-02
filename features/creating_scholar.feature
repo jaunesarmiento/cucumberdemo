@@ -21,7 +21,7 @@ Feature: Scholar Creation
     And I press the "Save" button
     Then I should see a message:
       """
-        Scholar successfully created
+      Scholar successfully created
       """
   #Scenario: Creating a Scholar with complete entries
     #When I am on the "new scholar" page
