@@ -1,5 +1,5 @@
 var Zombie = require('zombie');
-var browser = new Zombie ({ debug: true, runScripts: true });
+var browser = new Zombie ({ debug: false, runScripts: true });
 
 var ZombieClient = function (config) {
     var baseURL = config.uri;
@@ -46,10 +46,17 @@ ZombieClient.prototype.clearCookies = function () {
     browser.cookies.deleteAll();
 };
 
-ZombieClient.prototype.queryAll = function (selector, callback) {
-    var elements = browser.queryAll(selector);
+ZombieClient.prototype.queryText = function (selector, callback) {
 
-    callback(elements);
+    var elements = browser.queryAll(selector);
+    var textArr = [];
+
+    for (var i = 0; i < elements.length; i ++) {
+        var nodeText = elements[0]._childNodes[0].__nodeValue;
+        textArr.push(nodeText);
+    }
+
+    callback(textArr);
 };
 
 ZombieClient.prototype.tearDown = function (callback) {

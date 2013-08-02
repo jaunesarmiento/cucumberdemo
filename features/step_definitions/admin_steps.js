@@ -86,18 +86,16 @@ module.exports = function () {
         var foundAll = false;
 
         //get all the h4 in the document
-        this.queryAll('h4', function(elements) {
+        this.queryText('h4', function(elements) {
             //match all the h4 with the scholars
             //add to found count for every scholar matched
             async.each(elements, function (ele, callback) {
-
-                var nodeText = elements[0]._childNodes[0].__nodeValue;
 
                 for (var i = 0; i < scholars.length; i++) {
                     var scholar = scholars[i];
                     var scholarName = scholar.FirstName + " " + scholar.LastName;
 
-                    if (scholarName === nodeText) {
+                    if (scholarName === ele) {
                         foundCount = foundCount + 1;
                     }
                 }
