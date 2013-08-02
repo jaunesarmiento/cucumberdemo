@@ -78,7 +78,36 @@ module.exports = function () {
     });
 
     this.Then(/^I should see the following scholars$/, function(table, callback) {
-      // express the regexp above with the code you wish you had
-      callback.pending();
+
+        var scholars = table.hashes();
+
+        var scholarCount = scholars.length;
+        var foundCount = 0;
+        var foundAll = false;
+
+        //get all the h4 in the document
+        this.queryAll('h4', function(elements) {
+            //match all the h4 with the scholars
+            //add to found count for every scholar matched
+            async.each(elements, function (ele, callback) {
+
+                var nodeText = elements[0]._childNodes[0].__nodeValue;
+
+                for (var i = 0; i < scholars.length; i++) {
+                    var scholar = scholars[i];
+                    var scholarName = scholar.FirstName + " " + scholar.LastName;
+
+                    if (scholarName === nodeText) {
+                        foundCount = foundCount + 1;
+                    }
+                }
+
+                callback();
+
+            }, function () {
+                assert.equal(foundCount, scholarCount);
+                callback();
+            });
+        });
     });
 };

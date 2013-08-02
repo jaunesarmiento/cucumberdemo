@@ -46,8 +46,15 @@ ZombieClient.prototype.clearCookies = function () {
     browser.cookies.deleteAll();
 };
 
+ZombieClient.prototype.queryAll = function (selector, callback) {
+    var elements = browser.queryAll(selector);
+
+    callback(elements);
+};
+
 ZombieClient.prototype.tearDown = function (callback) {
     callback();
 };
+
 
 module.exports.ZombieClient = ZombieClient;
