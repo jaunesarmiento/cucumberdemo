@@ -68,27 +68,13 @@ module.exports = function () {
     });
 
     this.Then(/^I should see a message:$/, function(string, callback) {
-        var alertMsg = this.getText('.alert');
+
         string = string.replace(/\s+/g, ' ');
-        assert(alertMsg.indexOf(string) > -1);
-        callback();
-    });
 
-    this.Given(/^the following scholars exists:$/, function(table, callback) {
-        var self = this;
-
-        var scholarObjs = table.hashes();
-
-        async.each(scholarObjs, function (scholar, callback) {
-            self.restClient.scholar.post ({
-                "scholar[first_name]" : scholar.FirstName,
-                "scholar[last_name]" : scholar.LastName,
-                "scholar[amount]" : scholar.Amount,
-                "scholar[school]" : scholar.School,
-                "scholar[age]" : scholar.Age,
-                "scholar[description]" : scholar.Description
-            }, callback);
-        }, callback);
+        this.getText('.alert', function (alertMsg) {
+            assert(alertMsg.indexOf(string) > -1);
+            callback();
+        });
     });
 
     this.Then(/^I should see the following scholars$/, function(table, callback) {

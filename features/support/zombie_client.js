@@ -37,8 +37,9 @@ ZombieClient.prototype.getCurrentURL = function (callback) {
     callback(currentURL);
 };
 
-ZombieClient.prototype.getText = function (selector) {
-    return browser.text(selector);
+ZombieClient.prototype.getText = function (selector, callback) {
+    var text = browser.text(selector);
+    callback(text);
 };
 
 ZombieClient.prototype.clearCookies = function () {
