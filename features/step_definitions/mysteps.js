@@ -69,10 +69,9 @@ module.exports = function () {
 
     this.Then(/^I should see a message:$/, function(string, callback) {
 
-      string = string.replace(/\s+/g, ' ');
+        string = string.replace(/\s+/g, ' ');
 
         this.getText('.alert', function (alertMsg) {
-
             assert(alertMsg.indexOf(string) > -1);
             callback();
         });
