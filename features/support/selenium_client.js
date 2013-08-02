@@ -4,7 +4,7 @@ var async = require ("async");
 var SeleniumClient = function (config) {
 
     this.browser = new webdriver.Builder().
-                  usingServer('http://10.0.1.52:4444/wd/hub').
+                  usingServer('http://localhost:4444/wd/hub').
                   withCapabilities({ browserName: 'chrome' }).
                   build();
 
