@@ -103,7 +103,7 @@ module.exports = function () {
                 callback();
 
             }, function () {
-                assert.equal(foundCount, scholarCount);
+                assert(foundCount >= scholarCount);
                 callback();
             });
         });

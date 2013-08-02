@@ -4,7 +4,7 @@ var async = require ("async");
 var SeleniumClient = function (config) {
 
     this.browser = new webdriver.Builder().
-                  usingServer('http://localhost:4444/wd/hub').
+                  usingServer('http://10.0.1.52:4444/wd/hub').
                   withCapabilities({ browserName: 'chrome' }).
                   build();
 
@@ -77,7 +77,7 @@ SeleniumClient.prototype.getText = function (selector, callback) {
     });
 };
 
-SeleniumClient.prototype.queryAll = function (selector, callback) {
+SeleniumClient.prototype.queryText = function (selector, callback) {
     var arr = [];
 
     this.browser.findElements(webdriver.By.tagName(selector)).then(function(elements){
@@ -86,9 +86,7 @@ SeleniumClient.prototype.queryAll = function (selector, callback) {
                 cb(null, text);
             });
         }, function (err, result) {
-            arr.push(result)
-            console.log(result)
-            callback(arr);
+            callback(result);
         });
     });
 };
