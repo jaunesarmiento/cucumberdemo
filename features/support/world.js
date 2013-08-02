@@ -1,6 +1,7 @@
 // features/support/world.js
 
 var Client = require('./zombie_client').ZombieClient;
+var RestClient = require('portal-client');
 
 var World = function (callback) {
 
@@ -11,9 +12,10 @@ var World = function (callback) {
                  };
 
     var client = new Client(config);
-    //client.rest_client = new RestClient(config);
 
-    callback(client); // tell Cucumber we're finished and to use 'this' as the world instance
+    client.restClient = new RestClient(config, function () {
+        callback(client);
+    });
 };
 
 module.exports.World = World;

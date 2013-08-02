@@ -1,5 +1,3 @@
-@wip
-
 Feature: Scholar Creation
   In order to collect pledges for the scholars
   As an admin

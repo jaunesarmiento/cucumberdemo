@@ -1,3 +1,5 @@
+@wip
+
 Feature: Scholar Creation
   In order to pledge for a scholar
   As user
@@ -5,7 +7,7 @@ Feature: Scholar Creation
 
   Scenario: Verifying scholars appear
     Given the following scholars exists:
-      | First Name | Last Name | Amount | School | Age | Description | Image    |
+      | FirstName  | LastName  | Amount | School | Age | Description | Image    |
       | Weto       | Olaguer   | 5000   | UP     | 18  | Please Help | weto.jpg |
       | Adrian     | Co        | 5000   | UP     | 25  | Help Please | pc.jpg   |
     And I am on the "home" page
