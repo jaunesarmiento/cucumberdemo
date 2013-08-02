@@ -3,11 +3,13 @@ var browser = new webdriver.Builder().
                   usingServer('http://localhost:4444/wd/hub').
                   withCapabilities({ browserName: 'chrome' }).
                   build();
+
     browser.manage().timeouts().implicitlyWait(10000);
+    browser.manage().deleteAllCookies();
 
 var SeleniumClient = function (config) {
 
-    var baseURL = config.baseURL;
+    var baseURL = config.uri;
     var user = config.user;
     var password = config.password;
 
@@ -28,7 +30,7 @@ var SeleniumClient = function (config) {
 
 SeleniumClient.prototype.navigateTo = function (url, callback) {
     browser.get (this.getBaseURL() + url).then(function(){
-      callback();
+        callback();
     })
 }
 
@@ -55,14 +57,31 @@ SeleniumClient.prototype.click = function (selector, callback) {
       element.click().then(function(){ callback(); })
     })
 };
-
 SeleniumClient.prototype.getCurrentURL = function (callback) {
-    return 'http://localhost:3000/'
-    //browser.wait(function(){
-        //return browser.getCurrentUrl().then(function(url){
-            //return url;
-        //})
-    //})
+
+    browser.getCurrentUrl().then(function(url){
+        callback(url)
+    })
+
 };
+
+SeleniumClient.prototype.getText = function (selector) {
+
+    return ''
+
+};
+
+SeleniumClient.prototype.clearCookies = function (callback) {
+    return callback;
+};
+
+SeleniumClient.prototype.tearDown = function (callback) {
+    browser.manage().deleteAllCookies().then(function(){
+        callback();
+    })
+};
+
+
+
 
 module.exports.SeleniumClient = SeleniumClient;
