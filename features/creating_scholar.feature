@@ -21,5 +21,5 @@ Feature: Scholar Creation
     And I press the "Save" button
     Then I should see a message:
       """
-        Scholar successfully created
+      Scholar successfully created
       """

@@ -65,9 +65,13 @@ SeleniumClient.prototype.getCurrentURL = function (callback) {
 
 };
 
-SeleniumClient.prototype.getText = function (selector) {
+SeleniumClient.prototype.getText = function (selector, callback) {
 
-    return ''
+    browser.findElement(webdriver.By.className(selector.slice(1))).then(function(element){
+        element.getText().then(function(text){
+            callback(text.slice(2))
+        })
+    })
 
 };
 
