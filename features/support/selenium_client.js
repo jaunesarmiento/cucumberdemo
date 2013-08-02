@@ -1,4 +1,5 @@
 var webdriver = require('selenium-webdriver');
+var async = require ("async");
 
 var SeleniumClient = function (config) {
 
@@ -76,14 +77,30 @@ SeleniumClient.prototype.getText = function (selector, callback) {
     });
 };
 
+SeleniumClient.prototype.queryAll = function (selector, callback) {
+    var arr = [];
+
+    this.browser.findElements(webdriver.By.tagName(selector)).then(function(elements){
+        async.map(elements, function (element, cb) {
+            element.getText().then(function (text) {
+                cb(null, text);
+            });
+        }, function (err, result) {
+            arr.push(result)
+            console.log(result)
+            callback(arr);
+        });
+    });
+};
+
 SeleniumClient.prototype.clearCookies = function (callback) {
     return callback;
 };
 
 SeleniumClient.prototype.tearDown = function (callback) {
-    this.browser.manage().deleteAllCookies().then(function(){
+    this.browser.close().then(function(){
         callback();
-    });
+    })
 };
 
 module.exports.SeleniumClient = SeleniumClient;
