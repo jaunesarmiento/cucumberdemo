@@ -32,8 +32,9 @@ ZombieClient.prototype.click = function (selector, callback) {
     browser.pressButton(selector, callback);
 };
 
-ZombieClient.prototype.getCurrentURL = function () {
-    return browser.location.href;
+ZombieClient.prototype.getCurrentURL = function (callback) {
+    var currentURL = browser.location.href;
+    callback(currentURL);
 };
 
 ZombieClient.prototype.getText = function (selector) {
@@ -42,6 +43,10 @@ ZombieClient.prototype.getText = function (selector) {
 
 ZombieClient.prototype.clearCookies = function () {
     browser.cookies.deleteAll();
+};
+
+ZombieClient.prototype.tearDown = function (callback) {
+    callback();
 };
 
 module.exports.ZombieClient = ZombieClient;

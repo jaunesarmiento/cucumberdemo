@@ -1,6 +1,7 @@
 // features/support/world.js
 
-var Client = require('./zombie_client').ZombieClient;
+//var Client = require('./zombie_client').ZombieClient;
+var Client = require('./selenium_client').SeleniumClient;
 var RestClient = require('portal-client');
 
 var World = function (callback) {
@@ -12,6 +13,7 @@ var World = function (callback) {
                  };
 
     var client = new Client(config);
+    console.log(client);
 
     client.restClient = new RestClient(config, function () {
         callback(client);
